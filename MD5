@@ -1,0 +1,17 @@
+16b255d1b8c33ec072a2bb01346c0b16 *DESCRIPTION
+c8abeb2fb45ac2a8653b4c513e43ceb2 *NAMESPACE
+b308704b806c0601aa2355390c692b31 *R/gglegend.R
+072184a9e1b39963b2ad2a1518056d7a *R/keybox.R
+317e140d1c35e72c8318ebb3423ac6e4 *R/reexport.R
+7954412ea363216e012a2914bb139b5f *R/set_font.R
+df8f0798df90f4f0353ab253bc2e77f9 *R/utilities.R
+3796806ccf1b2bf4c0a356a2eeee0fb2 *build/vignette.rds
+a8fe630fe1f83714a7096bd1fd00c4da *inst/doc/ggfun.R
+0b415235b233b455b8d08ecb9be6ad74 *inst/doc/ggfun.Rmd
+04203f8876eaddd3135b7dbf0e554209 *inst/doc/ggfun.html
+8a10f6bd7b9f9c31704d62ce47467269 *man/get_aes_var.Rd
+540c5377d7581eeb2c563acdebf57533 *man/gglegend.Rd
+42fc40ee024ab34ed87c3a41117c91bf *man/keybox.Rd
+8f5b4561637805b26771664dd4d43ff3 *man/reexports.Rd
+33c65440f13f16232a6c118ce8cdf2b1 *man/set_font.Rd
+0b415235b233b455b8d08ecb9be6ad74 *vignettes/ggfun.Rmd

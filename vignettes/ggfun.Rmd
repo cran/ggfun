@@ -1,0 +1,68 @@
+---
+title: "Useful functions for ggplot2"
+author: "Guangchuang Yu\\
+
+        School of Basic Medical Sciences, Southern Medical University"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{ggplot utilities}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r style, echo=FALSE, results="asis", message=FALSE}
+knitr::opts_chunk$set(tidy = FALSE,
+		   message = FALSE)
+
+library("grid")
+library("ggplot2")
+library("ggfun")
+theme_set(theme_grey())
+```
+
+
+```{r}
+library("grid")
+library("ggplot2")
+library("ggfun")
+```
+
+## keybox
+
+
+```{r}
+p <- ggplot(mtcars, aes(mpg, disp, color=factor(cyl), size=cyl)) + geom_point()
+
+keybox(p, 'rect')
+```
+
+```{r}
+keybox(p, 'roundrect', gp = gpar(col = '#808080', lty = "dashed"))
+```
+
+
+## gglegend
+
+
+
+```{r}
+p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+data <- data.frame(colour = c("red",  "blue"), VALUE = c("A", "B"))
+gglegend(aes(colour = VALUE, label=VALUE), data, geom_text, p)
+```
+
+
+## set_font
+
+```{r}
+d <- data.frame(x=rnorm(10), y=rnorm(10), lab=LETTERS[1:10])
+p <- ggplot(d, aes(x, y)) + geom_text(aes(label=lab), size=5)
+set_font(p, family="Times", fontface="italic", color='firebrick')
+```
