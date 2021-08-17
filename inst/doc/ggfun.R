@@ -13,12 +13,15 @@ library("ggplot2")
 library("ggfun")
 
 ## -----------------------------------------------------------------------------
-p <- ggplot(mtcars, aes(mpg, disp, color=factor(cyl), size=cyl)) + geom_point()
-
-keybox(p, 'rect')
+p <- ggplot(mpg, aes(displ, cty)) + geom_point()
+p <- p + facet_grid(cols = vars(cyl))
+p <- p + theme(strip.background=element_roundrect(fill="grey40", color=NA, r=0.15))
+p
 
 ## -----------------------------------------------------------------------------
-keybox(p, 'roundrect', gp = gpar(col = '#808080', lty = "dashed"))
+p2 <- ggplot(mtcars, aes(mpg, disp, color=factor(cyl), size=cyl)) +
+         geom_point()
+p2 + theme(legend.background=element_roundrect(color="#808080", linetype=2))
 
 ## -----------------------------------------------------------------------------
 p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
