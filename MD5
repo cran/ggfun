@@ -1,6 +1,6 @@
-51b6ad613f1e43224dc6eddbf36cd5f7 *DESCRIPTION
-24fcdde6838c9345bb7245f72535b263 *NAMESPACE
-c4c7bfd7eda7c8e002702b7f7a2c0efe *NEWS.md
+6ce5fb80bb3dd360fece39940d865e5c *DESCRIPTION
+cb3dc54258eba77e2f3a70faf863f1fa *NAMESPACE
+3c6bd23a6574401f3bf3f5bba05e42a8 *NEWS.md
 30a95e7ea4f4d0145fcbbc844df2552f *R/add-facet.R
 97835cb8da40525b129c7bab59430e7f *R/facet_set.R
 338367f4301631ab7c5365d128cdfd0b *R/ggelement.R
@@ -9,11 +9,12 @@ de2b449179ac731c76244a11c2f4a2f3 *R/keybox.R
 357f084fc635c77f86e3461d120e4d84 *R/method-ggplot-add.R
 be407f1afe1cae4e4eea739119a4495c *R/reexport.R
 233e6e897724357eaf7b00b08b56a7ec *R/set_font.R
+d24db93cb781e75aa2e035e9e20f4ff8 *R/theme.R
 94806d6144adc0bf8d7b8a48a5898b96 *R/utilities.R
-0f8a82879ea1ea1157dc4dd9495e3c4f *build/vignette.rds
+8377ae8279b9f9dbf082262afad39b8d *build/vignette.rds
 8ea0b5a1c54a989c1076462c9fd422cf *inst/doc/ggfun.R
 0382230c375d32f7df69710a83613ad2 *inst/doc/ggfun.Rmd
-388811750bf563040acd2894b3ee7d41 *inst/doc/ggfun.html
+0a7f1dfe8723ccbb227e382e7f286f52 *inst/doc/ggfun.html
 d80318ffa92a63500d922b3a557d01fc *man/element_roundrect.Rd
 21dd4aaf8fcb8ade10561dd94015a4f4 *man/facet_set.Rd
 eb748a9ed1b23d29874a908a050928b2 *man/get_aes_var.Rd
@@ -24,4 +25,6 @@ eb748a9ed1b23d29874a908a050928b2 *man/get_aes_var.Rd
 fdfb52ebd8a7d8883c3edb2be72b890d *man/keybox.Rd
 756041bf7745b956d1508525090eee80 *man/reexports.Rd
 3aa9dd57d2fc608529836f1006170601 *man/set_font.Rd
+5d72fdfd6bb5c2e26a3ab0b5140cc341 *man/theme_nothing.Rd
+084d708eadc8aeadee21d0a2ab595113 *man/theme_transparent.Rd
 0382230c375d32f7df69710a83613ad2 *vignettes/ggfun.Rmd
