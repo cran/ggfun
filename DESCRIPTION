@@ -1,23 +1,23 @@
 Package: ggfun
 Title: Miscellaneous Functions for 'ggplot2'
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: c(
        person("Guangchuang", "Yu",     email = "guangchuangyu@gmail.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-6485-8781")),
        person("Shuangbin", "Xu",       email = "xshuangbin@163.com",      role = "aut", comment = c(ORCID="0000-0003-3513-5362"))
        )
 Description: Useful functions to edit 'ggplot' object (e.g., setting fonts for theme and layers, adding rounded rectangle as background for each of the legends).
 Imports: ggplot2, grid, rlang, utils
-Suggests: ggplotify, knitr, rmarkdown, prettydoc
+Suggests: ggplotify, knitr, rmarkdown, prettydoc, tidyr, ggnewscale
 VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0
 Encoding: UTF-8
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 NeedsCompilation: no
-Packaged: 2022-04-01 08:09:13 UTC; ygc
+Packaged: 2022-08-31 02:34:38 UTC; ygc
 Author: Guangchuang Yu [aut, cre, cph]
     (<https://orcid.org/0000-0002-6485-8781>),
   Shuangbin Xu [aut] (<https://orcid.org/0000-0003-3513-5362>)
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Repository: CRAN
-Date/Publication: 2022-04-01 09:10:07 UTC
+Date/Publication: 2022-08-31 06:30:02 UTC
