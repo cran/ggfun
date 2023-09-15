@@ -1,13 +1,13 @@
 Package: ggfun
 Title: Miscellaneous Functions for 'ggplot2'
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: c(
        person("Guangchuang", "Yu",     email = "guangchuangyu@gmail.com", role = c("aut", "cre", "cph"), comment = c(ORCID = "0000-0002-6485-8781")),
        person("Shuangbin", "Xu",       email = "xshuangbin@163.com",      role = "aut", comment = c(ORCID="0000-0003-3513-5362"))
        )
 Description: Useful functions and utilities for 'ggplot' object (e.g., geometric layers, themes, and utilities to edit the object).
 Depends: R (>= 4.1.0)
-Imports: ggplot2, grid, rlang, utils
+Imports: cli, ggplot2, grid, rlang, utils
 Suggests: ggplotify, knitr, rmarkdown, prettydoc, tidyr, ggnewscale
 VignetteBuilder: knitr
 ByteCompile: true
@@ -15,10 +15,10 @@ License: Artistic-2.0
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-08-08 15:19:33 UTC; HUAWEI
+Packaged: 2023-09-15 09:33:02 UTC; HUAWEI
 Author: Guangchuang Yu [aut, cre, cph]
     (<https://orcid.org/0000-0002-6485-8781>),
   Shuangbin Xu [aut] (<https://orcid.org/0000-0003-3513-5362>)
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Repository: CRAN
-Date/Publication: 2023-08-09 22:50:08 UTC
+Date/Publication: 2023-09-15 10:12:08 UTC

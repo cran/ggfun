@@ -1,3 +1,97 @@
+##' override point legend set by 'aes(shape = I(shape))'
+##'
+##'
+##' @title set_point_legend_shape
+##' @param plot a 'gg' plot object
+##' @return an updated plot
+##' @importFrom ggplot2 guides
+##' @importFrom ggplot2 guide_legend
+##' @export
+##' @author Guangchuang Yu
+set_point_legend_shape <- function(plot) {
+    pshape <- get_aes_var(plot$mapping, 'shape')
+    if (is.null(pshape) || pshape == "NULL") {
+        return(plot)
+    }
+
+    pshape <- eval(parse(text = pshape))
+
+    plot + guides(size = guide_legend(override.aes = list(shape = pshape)))          
+}
+
+## default point shape for enrichplot
+enrichplot_point_shape <- 21
+
+
+##' extract data from a 'gg' plot
+##'
+##'
+##' @title get_plot_data
+##' @param plot a 'gg' plot object
+##' @param var variables to be extracted
+##' @param layer specific layer to extract the data
+##' @return a data frame of selected variables
+##' @importFrom cli cli_alert
+##' @export
+##' @author Guangchuang Yu
+get_plot_data <- function(plot, var = NULL, layer = NULL) {
+    if (!inherits(plot, 'gg')) {
+        stop("'plot' should be a 'gg' object.")
+    }
+
+    if (is.null(var)) {
+        return(plot$data)
+    }
+
+
+    if (is.null(layer)) {
+        ly <- plot
+    } else if (is.numeric(layer) && length(layer) == 1) {
+        ly <- plot$layers[[layer]]
+    } else {
+        cli::cli_alert("invalid layer, set to NULL automatically")
+        ly <- plot
+    }
+
+    d <- ly$data
+    if (length(d) == 0) {
+        d <- plot$data
+    }
+
+    m <- ly$mapping
+    
+    if (is.null(m)) {
+        mapping <- plot$mapping
+    } else {
+        mapping <- modifyList(plot$mapping, m)
+    }
+
+    if (length(d) == 0) {
+        cli::cli_alert("No data found.")
+        cli::cli_alert("You need to set a proper 'layer' index to locate the layer data.")
+
+        return(NULL)
+    }
+
+    var2 <- var
+    i <- which(! var2 %in% names(d))
+
+    if (length(i) > 0 && 
+        (is.null(mapping) || length(mapping) == 0)
+    ) {
+        cli::cli_alert("Not aes mapping found.")
+        cli::cli_alert("You nedd to set a proper 'layer' index to locate the layer mapping.")
+
+        return(NULL)
+    }
+
+    var2[i] <- vapply(X = var2[i], 
+        FUN = get_aes_var, 
+        FUN.VALUE = character(1),
+        mapping = mapping)
+    
+    d[, var2, drop = FALSE]
+}
 
 ##' extract aes mapping, compatible with ggplot2 < 2.3.0 & > 2.3.0
 ##'
@@ -9,7 +103,7 @@
 ##' @importFrom utils tail
 ##' @importFrom rlang quo_text
 ##' @export
-##' @author guangchuang yu
+##' @author Guangchuang Yu
 get_aes_var <- function(mapping, var) {
     res <- rlang::quo_text(mapping[[var]])
     ## to compatible with ggplot2 v=2.2.2
