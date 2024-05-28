@@ -5,6 +5,11 @@
 
 -->
 
+# ggfun 0.1.5
+
++ implement the `%<+%` operator as a S3 method (2024-05-26, Sun)
+    - mv the `%<+%` operator from 'ggtree' as the `%<+%.ggtree` method
+    - implement `%<+%.ggsc` method for `ggsc` object.
 
 # ggfun 0.1.4
 
