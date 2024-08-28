@@ -5,6 +5,11 @@
 
 -->
 
+# ggfun 0.1.6
+
++ `%<+%` method for 'ggflow' object (2024-08-28, Wed)
++ `geom_scatter_rect()` to draw retangle boxes as scatter points (2024-08-28, Wed)
+
 # ggfun 0.1.5
 
 + implement the `%<+%` operator as a S3 method (2024-05-26, Sun)
