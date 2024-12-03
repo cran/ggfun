@@ -1,6 +1,6 @@
-4e379f8e28afd8874bc2ac05efdd5360 *DESCRIPTION
+023ecb9c881c42d90a10691e619e20b1 *DESCRIPTION
 e7dcca933cd60039f6bb143012b9a257 *NAMESPACE
-041deb4c02c2242f9a8470dc46f7d0ae *NEWS.md
+b27d92a828d55608cec120c50f597c76 *NEWS.md
 d4b175e84f576e8825053359a6d01d17 *R/axis.R
 fb67297b101246f5c97944d90a161665 *R/facet_set.R
 593c88225e75bb4565c39302622df9c3 *R/geom-scatter-rect.R
@@ -20,12 +20,12 @@ b16dabffa886746b0667bd8d50ea9a73 *R/reexport.R
 233e6e897724357eaf7b00b08b56a7ec *R/set_font.R
 057e675a6b7795290042d9814b15d386 *R/theme.R
 ce2d8dddc3ddc04304ec87a779688af6 *R/treedata-function.R
-8bca7d5c2337fa0830d97b0f22b28d6d *R/utilities.R
+3d2aee3ee74d1da284aa7182d836cd48 *R/utilities.R
 ee4052913c1ecbe3fc15e81182555680 *R/zzz.R
-2523b30f705fe1559366b3cbf9005c9e *build/vignette.rds
-8ea0b5a1c54a989c1076462c9fd422cf *inst/doc/ggfun.R
+55af0b099729cd1a3093e79ad41c963c *build/vignette.rds
+c204bc17ffb553d888162014e5c436d5 *inst/doc/ggfun.R
 0382230c375d32f7df69710a83613ad2 *inst/doc/ggfun.Rmd
-5f26cceb23106b2c1826d89489234cd3 *inst/doc/ggfun.html
+7385c1d1f4968fe79ec1fd8227b7f3fe *inst/doc/ggfun.html
 60e29e72f89654dd76ef2415fc15e421 *inst/prototype/geom_rtile.r
 820c99e086f91a6c1187fc1505b40220 *man/attacher.Rd
 23a5dc6bd85bcafb00557fbad0df4695 *man/element_blinds.Rd

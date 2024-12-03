@@ -48,8 +48,8 @@ p + facet_set(label=label_both)
 p + facet_set(label="TEST")
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  ## please try:
-#  
-#  ggplotify::as.ggplot(~barplot(1:10, col=rainbow(10))) +
-#    facet_set('a barplot in base')
+# ## please try:
+# 
+# ggplotify::as.ggplot(~barplot(1:10, col=rainbow(10))) +
+#   facet_set('a barplot in base')
 
