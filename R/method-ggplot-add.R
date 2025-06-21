@@ -1,7 +1,7 @@
 #' @importFrom ggplot2 ggplot_add
 #' @method ggplot_add facet_set
 #' @export
-ggplot_add.facet_set <- function(object, plot, object_name){
+ggplot_add.facet_set <- function(object, plot, object_name, ...){
     if (object$side == 'right' && is.null(object$angle)) {
         object$angle <- -90
     }
@@ -14,7 +14,7 @@ ggplot_add.facet_set <- function(object, plot, object_name){
 #' @importFrom rlang .data
 #' @importFrom ggplot2 geom_point
 #' @export
-ggplot_add.volpoint <- function(object, plot, object_name) {
+ggplot_add.volpoint <- function(object, plot, object_name, ...) {
   d <- plot$data
   fc_cutoff <- object$log2FC_cutoff
   p_cutoff <- object$p_cutoff
@@ -65,6 +65,7 @@ ggplot_add.volpoint <- function(object, plot, object_name) {
 ##' @importFrom ggplot2 element_text
 ##' @importFrom ggplot2 margin
 ##' @importFrom ggplot2 rel
+##' @importFrom ggplot2 facet_grid
 build_new_plot <- function(object, plot){
     flag.params <- TRUE
     if (!inherits(plot$facet, "FacetNull")){
