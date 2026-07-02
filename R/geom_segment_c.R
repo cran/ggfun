@@ -11,6 +11,7 @@
 ##' @param inherit.aes logical
 ##' @param arrow specification for arrow heads, as created by arrow().
 ##' @param arrow.fill fill color to usse for the arrow head (if closed). `NULL` means use `colour` aesthetic.
+##' @param nsplit number of pieces used to split each segment for continuous colouring.
 ##' @param ... additional parameter
 ##' @importFrom ggplot2 layer
 ##' @export
@@ -34,7 +35,7 @@ geom_segment_c <- function(mapping = NULL, data = NULL,
                            position = 'identity', lineend = "butt",
                            na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
                            arrow = NULL, arrow.fill = NULL, 
-                           ...) {
+                           nsplit = 20, ...) {
 
     structure(list(
         data = data,
@@ -46,6 +47,7 @@ geom_segment_c <- function(mapping = NULL, data = NULL,
             arrow = arrow,
             lineend = lineend,
             na.rm = na.rm,
+            nsplit = nsplit,
             ...
         )
     ), class = "segmentC")
@@ -54,7 +56,6 @@ geom_segment_c <- function(mapping = NULL, data = NULL,
 Stat <- getFromNamespace("Stat", "ggplot2")
 
 ##' @importFrom ggplot2 ggplot_add
-##' @importFrom ggplot2 aes_string
 ##' @method ggplot_add segmentC
 ##' @export
 ggplot_add.segmentC <- function(object, plot, object_name, ...) {
@@ -69,7 +70,7 @@ ggplot_add.segmentC <- function(object, plot, object_name, ...) {
     mapping <- object$mapping
     # mapping["colour"] <- list(v)
 
-    default_aes <- aes_string(colour=v)
+    default_aes <- aes(colour = !!rlang::sym(v))
     if (is.null(mapping)) {
         mapping <- default_aes
     } else {
@@ -97,8 +98,8 @@ StatSegmentC <- ggproto("StatSegmentC", Stat,
                         compute_group = function(data, params) {
                             data
                         },
-                        compute_panel = function(self, data, scales, params, lineend, extend = 0.002) {
-                            setup_data_continuous_color_df(data, nsplit = 20, extend = extend)
+                        compute_panel = function(self, data, scales, params, lineend, nsplit = 20, extend = 0.002) {
+                            setup_data_continuous_color_df(data, nsplit = nsplit, extend = extend)
                         }
                         )
 
@@ -113,7 +114,7 @@ setup_data_continuous_color_df <- function(df, nsplit = 100, extend = 0.002, poo
             rr <- c(df$x, df$xend)        
     }
 
-    lapply(1:nrow(df), function(i) {
+    lapply(seq_len(nrow(df)), function(i) {
         if (!pool)
             rr <- c(df$x[i], df$xend[i])
         df2 <- setup_data_continuous_color(x = df$x[i],
@@ -126,15 +127,14 @@ setup_data_continuous_color_df <- function(df, nsplit = 100, extend = 0.002, poo
                                            nsplit = nsplit,
                                            extend = extend)
 
-        res <- lapply(df[i,, drop = FALSE], rep, each = nrow(df2)) |>
-            do.call('cbind', args = list()) |> as.data.frame()
+        res <- df[rep(i, nrow(df2)), , drop = FALSE]
         res$x <- df2$x
         res$xend <- df2$xend
         res$y <- df2$y
         res$yend <- df2$yend
-        res$colour <- df2$col
+        res$colour <- df2$colour
         return(res)
-    }) |> do.call('rbind', args = list())
+    }) |> do.call(what = 'rbind')
 }
 
 
@@ -146,23 +146,29 @@ setup_data_continuous_color <- function(x, xend, y, yend, col, col2,
     if (is.null(xrange))
         xrange <- c(x, xend)
 
-    ## xstep <- diff(xrange)/nsplit
-    ## xn <- floor((xend - x)/xstep)
-    xn <- floor((xend - x) * nsplit /diff(xrange))
-    ## slope <- (yend - y)/(xend - x)
     ydiff <- yend - y
     xdiff <- xend - x
 
-    if (xn > 0) {
-        ## x <- x + 0:xn * xstep
-        x <- x + 0:xn * diff(xrange) / nsplit 
-        tmp <- x[-1] * (1 + extend)
-        tmp[tmp > xend] <- xend
-        xend <- c(tmp, xend)
-        ## y <- y + 0:xn * xstep * slope
-        y <- y + 0:xn * diff(xrange) * ydiff / (nsplit * xdiff)
-        ## yend <- y + (xend - x) * slope
-        yend <- y + (xend - x) * ydiff / xdiff 
+    nsplit <- max(1, as.integer(nsplit[1]))
+
+    if (xdiff == 0 && ydiff == 0) {
+        n <- 1
+    } else {
+        n <- nsplit
+    }
+
+    if (n > 1) {
+        t0 <- seq(0, 1, length.out = n)
+        t1 <- c(t0[-1] * (1 + extend), 1)
+        t1[t1 > 1] <- 1
+        t1[t1 < 0] <- 0
+
+        x0 <- x
+        y0 <- y
+        x <- x0 + t0 * xdiff
+        xend <- x0 + t1 * xdiff
+        y <- y0 + t0 * ydiff
+        yend <- y0 + t1 * ydiff
     }
 
     n <- length(x)
